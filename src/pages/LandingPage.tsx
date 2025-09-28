@@ -9,7 +9,7 @@ const LandingPage: React.FC = () => {
   const askSample = async () => {
     setLoading(true);
     try {
-      const res = await fetch('http://localhost:4000/api/qna', {
+      const res = await fetch('/api/qna', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ query: 'Top feature requests last 90 days' })
@@ -25,10 +25,10 @@ const LandingPage: React.FC = () => {
   };
 
   return (
-    <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+    <div className="app-shell">
       <Header />
-      <main style={{ flex: 1 }}>
-        <section className="container hero">
+      <main className="main-content">
+        <section className="container hero" style={{ paddingTop: 18 }}>
           <div className="left">
             <h1>Know your community like a teammate</h1>
             <p>Aggregate Discord, Slack, forums and support into a single AI Q&A. Ask what members want, what they’re worried about, and act — fast.</p>

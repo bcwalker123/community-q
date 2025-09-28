@@ -1,13 +1,17 @@
 :root {
-  --primary: #5b8cff; /* brand color: change here */
+  --primary: #5b8cff; /* brand color */
   --bg: #ffffff;
   --surface: #f7f8fb;
   --text: #0b1220;
   --muted: #6b7280;
   --card: #ffffff;
   --shadow: 0 8px 24px rgba(16,24,40,0.06);
+
+  --header-height: 64px;
+  --footer-height: 120px;
 }
 
+/* dark theme */
 [data-theme='dark'] {
   --primary: #5b8cff;
   --bg: #0b0f14;
@@ -21,15 +25,54 @@
 * { box-sizing: border-box; }
 html,body,#root { height: 100%; margin: 0; padding: 0; font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; background: var(--bg); color: var(--text); }
 
-.header { display:flex; align-items:center; justify-content:space-between; padding: 16px 24px; }
+/* Layout root that keeps footer at bottom */
+.app-shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header: fixed at top; hide on scroll via transform */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--header-height);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 24px;
+  background: var(--surface);
+  box-shadow: 0 4px 18px rgba(0,0,0,0.06);
+  z-index: 1200;
+  transition: transform 260ms cubic-bezier(.2,.9,.2,1), background 200ms;
+  transform: translateY(0);
+}
+
+/* When header is hidden */
+.header--hidden {
+  transform: translateY(-110%);
+}
+
+/* small compact brand */
 .brand { display:flex; align-items:center; gap:12px; font-weight:700; font-size:18px; color:var(--text); }
 .actions { display:flex; gap:12px; align-items:center; }
 
+/* Buttons */
 .btn { display:inline-flex; align-items:center; justify-content:center; gap:8px; border-radius:8px; padding:10px 14px; cursor:pointer; border:0; font-weight:600; }
 .btn-primary { background:var(--primary); color:white; box-shadow: var(--shadow); }
 .btn-ghost { background:transparent; color:var(--text); border:1px solid rgba(0,0,0,0.06); }
 
-.container { width:100%; max-width:1100px; margin: 0 auto; padding: 36px 24px; }
+/* main content area - add top padding to prevent header overlay */
+.main-content {
+  flex: 1 0 auto;
+  padding-top: calc(var(--header-height) + 20px); /* ensure space under fixed header */
+  padding-bottom: calc(var(--footer-height) + 20px); /* keep space above footer */
+}
+
+/* page layout containers */
+.container { width:100%; max-width:1100px; margin: 0 auto; padding: 12px 24px; }
 
 .hero { display:flex; gap:28px; align-items:center; justify-content:space-between; }
 .hero .left { flex:1; }
@@ -43,11 +86,36 @@ html,body,#root { height: 100%; margin: 0; padding: 0; font-family: Inter, syste
 
 .cta-strip { margin: 28px 0; }
 
-.footer { margin-top:auto; padding:28px 24px; color:var(--muted); }
-.footer .cols { display:flex; gap:40px; flex-wrap:wrap; }
-.footer small { display:block; margin-top:12px; color:var(--muted); }
+/* Footer - full width, sits at bottom thanks to flex layout in .app-shell */
+.site-footer {
+  height: var(--footer-height);
+  width: 100%;
+  background: var(--surface);
+  border-top: 1px solid rgba(0,0,0,0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px 24px;
+  margin-top: auto;
+}
 
+/* inner constrained container inside footer */
+.site-footer .footer-inner {
+  width: 100%;
+  max-width: 1100px;
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+/* footer columns */
+.site-footer .cols { display:flex; gap:40px; flex-wrap:wrap; align-items:flex-start; }
+.site-footer small { display:block; margin-top:12px; color:var(--muted); }
+
+/* responsive */
 @media (max-width:900px) {
   .hero { flex-direction:column; align-items:flex-start; }
   .hero .right { width:100%; }
+  .site-footer { height: auto; padding: 24px 12px; }
 }
