@@ -1,69 +1,59 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React from 'react';
 import { useTheme } from '../context/ThemeContext';
-
-/**
- * Header hides on scroll down and reappears on scroll up.
- * Simple threshold-based implementation without heavy throttling
- * for clarity. Works in modern browsers.
- */
 
 const Header: React.FC = () => {
   const { theme, toggleTheme } = useTheme();
-  const [hidden, setHidden] = useState(false);
-  const lastY = useRef<number>(0);
-  const ticking = useRef(false);
-
-  useEffect(() => {
-    lastY.current = window.scrollY || 0;
-
-    const handleScroll = () => {
-      const currentY = window.scrollY || 0;
-      const delta = currentY - lastY.current;
-
-      // small threshold to avoid flicker
-      const threshold = 10;
-
-      if (!ticking.current) {
-        window.requestAnimationFrame(() => {
-          if (Math.abs(delta) > threshold) {
-            // Scrolling down -> hide (if past 80px)
-            if (delta > 0 && currentY > 80) {
-              setHidden(true);
-            } else {
-              // Scrolling up -> show
-              setHidden(false);
-            }
-            lastY.current = currentY;
-          }
-          ticking.current = false;
-        });
-        ticking.current = true;
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   return (
-    <header className={`header ${hidden ? 'header--hidden' : ''}`}>
-      <div className="brand" style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden>
-          <rect x="2" y="6" width="8" height="12" rx="2" fill="var(--primary)"></rect>
-          <rect x="14" y="6" width="8" height="8" rx="2" fill="var(--primary)"></rect>
-        </svg>
-        <span>ComIQ</span>
-      </div>
+    <header className="header" role="banner">
+      <div className="header-inner" role="navigation" aria-label="Main">
+        <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+          <div className="brand" aria-hidden>
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" aria-hidden>
+              <rect x="2" y="6" width="8" height="12" rx="2" fill="var(--primary)"></rect>
+              <rect x="14" y="6" width="8" height="8" rx="2" fill="var(--primary)"></rect>
+            </svg>
+            <span>ComIQ</span>
+          </div>
 
-      <div className="actions">
-        <button className="btn btn-ghost" onClick={() => alert('Features (TODO)')}>Features</button>
-        <button className="btn btn-ghost" onClick={() => alert('Pricing (TODO)')}>Pricing</button>
+          <nav className="nav" aria-label="Top navigation">
+            <a href="#product">Product</a>
+            <a href="#integrations">Integrations</a>
+            <a href="#usecases">Use cases</a>
+            <a href="#pricing">Pricing</a>
+          </nav>
+        </div>
 
-        <button aria-label="Toggle theme" title="Toggle theme" onClick={toggleTheme} className="btn btn-ghost">
-          {theme === 'light' ? '🌙 Dark' : '☀️ Light'}
-        </button>
+        <div className="actions" role="group" aria-label="Header actions">
+          <button
+            className="btn btn-outline"
+            onClick={() => {
+              window.location.hash = '#contact';
+            }}
+            aria-label="Contact Sales"
+          >
+            Contact
+          </button>
 
-        <button className="btn btn-primary" onClick={() => alert('Get started (TODO)')}>Get started</button>
+          <button
+            className="btn btn-outline"
+            onClick={toggleTheme}
+            aria-label="Toggle theme"
+            title="Toggle theme"
+          >
+            {theme === 'light' ? '🌙 Dark' : '☀️ Light'}
+          </button>
+
+          <button
+            className="btn btn-primary"
+            onClick={() => {
+              window.location.hash = '#signup';
+            }}
+            aria-label="Get started"
+          >
+            Get started
+          </button>
+        </div>
       </div>
     </header>
   );

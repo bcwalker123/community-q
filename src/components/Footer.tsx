@@ -5,33 +5,33 @@ const Footer: React.FC = () => {
   return (
     <footer className="site-footer" role="contentinfo">
       <div className="footer-inner">
-        <div>
-          <strong>ComIQ</strong>
-          <small style={{ display: 'block', marginTop: 6 }}>AI community insights · Privacy-first</small>
+        <div style={{ minWidth: 220 }}>
+          <strong style={{ fontSize: 16 }}>ComIQ</strong>
+          <div style={{ marginTop: 8, color: 'var(--muted)' }}>AI community insights · Privacy-first</div>
         </div>
 
-        <div className="cols">
-          <div>
-            <strong>Product</strong>
-            <div><a href="#" onClick={(e)=>e.preventDefault()}>Features</a></div>
-            <div><a href="#" onClick={(e)=>e.preventDefault()}>Pricing</a></div>
+        <div style={{ display: 'flex', gap: 28, flexWrap: 'wrap' }}>
+          <div className="footer-col">
+            <div style={{ fontWeight: 700, marginBottom: 8 }}>Product</div>
+            <div className="small"><a href="#product" onClick={(e)=>e.preventDefault()}>Features</a></div>
+            <div className="small"><a href="#pricing" onClick={(e)=>e.preventDefault()}>Pricing</a></div>
           </div>
 
-          <div>
-            <strong>Company</strong>
-            <div><a href="#" onClick={(e)=>e.preventDefault()}>About</a></div>
-            <div><a href="#" onClick={(e)=>e.preventDefault()}>Careers</a></div>
+          <div className="footer-col">
+            <div style={{ fontWeight: 700, marginBottom: 8 }}>Company</div>
+            <div className="small"><a href="#about" onClick={(e)=>e.preventDefault()}>About</a></div>
+            <div className="small"><a href="#careers" onClick={(e)=>e.preventDefault()}>Careers</a></div>
           </div>
 
-          <div style={{ minWidth: 200 }}>
-            <strong>Legal</strong>
-            <div><a href="#" onClick={(e)=>e.preventDefault()}>Privacy</a></div>
-            <div><a href="#" onClick={(e)=>e.preventDefault()}>Terms</a></div>
+          <div className="footer-col">
+            <div style={{ fontWeight: 700, marginBottom: 8 }}>Legal</div>
+            <div className="small"><a href="#privacy" onClick={(e)=>e.preventDefault()}>Privacy</a></div>
+            <div className="small"><a href="#terms" onClick={(e)=>e.preventDefault()}>Terms</a></div>
           </div>
         </div>
 
         <div style={{ marginLeft: 'auto', alignSelf: 'flex-end' }}>
-          <small>© {year} ComIQ. All rights reserved.</small>
+          <small style={{ color: 'var(--muted)' }}>© {year} ComIQ. All rights reserved.</small>
         </div>
       </div>
     </footer>
