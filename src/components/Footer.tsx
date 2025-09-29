@@ -2,6 +2,7 @@ import React from 'react';
 
 const Footer: React.FC = () => {
   const year = new Date().getFullYear();
+
   return (
     <footer className="site-footer" role="contentinfo">
       <div className="footer-inner">
