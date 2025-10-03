@@ -1,19 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, type JSX } from "react";
+import { Link } from "react-router-dom";
 
 /**
- * LandingPage.tsx — content-only landing page.
- * Drop into src/pages/LandingPage.tsx
- * Make sure Header & Footer are rendered once in App.tsx (not inside this file)
+ * Landing page content only (no header/footer)
  */
-
 export default function LandingPage(): JSX.Element {
   const [hoveredPlatform, setHoveredPlatform] = useState<string>("");
 
   const platforms = [
-    { id: "twitch", name: "Twitch", label: "T" },
-    { id: "youtube", name: "YouTube", label: "Y" },
+    { id: "twitch", name: "Twitch", label: "TW" },
+    { id: "youtube", name: "YouTube", label: "YT" },
     { id: "telegram", name: "Telegram", label: "TG" },
-    { id: "discord", name: "Discord", label: "D" },
+    { id: "discord", name: "Discord", label: "DC" },
     { id: "other", name: "Other", label: "..." },
   ];
 
@@ -21,22 +19,21 @@ export default function LandingPage(): JSX.Element {
 
   return (
     <div className="landing-page">
-      {/* HERO */}
       <div className="container">
-        <main className="hero">
+        <main className="hero app-main">
           <div className="hero-inner">
             <section className="hero-copy">
               <h1 className="hero-title">
                 Community Intelligence, <span className="accent">Simplified</span>
               </h1>
               <p className="hero-blurb">
-                Centralize chats, moderate at scale, and gain actionable insights.
-                Built for creators and communities who want to grow with control and clarity.
+                Centralize chats, moderate at scale, and get actionable analytics — all in one place so your community
+                can grow without friction.
               </p>
 
               <div className="hero-ctas">
-                <a className="btn primary" href="#start">Start your community</a>
-                <a className="btn secondary" href="#demo">Request a demo</a>
+                <Link className="btn primary" to="/start">Start your community</Link>
+                <Link className="btn secondary" to="/demo">Request a demo</Link>
               </div>
             </section>
 
@@ -52,18 +49,17 @@ export default function LandingPage(): JSX.Element {
       <div className="container">
         <hr className="sep" />
 
-        {/* FIRST content block (wider + taller) */}
         <section className="content-block">
           <div className="max-inner">
             <div style={{ flex: 1 }}>
-              <h2>Powerful moderation & analytics</h2>
+              <h2>Powerful Moderation & Analytics</h2>
               <p className="muted">
-                Auto moderation, role-based tools, and member analytics that help you make data-driven decisions.
+                Auto-moderation rules, role-based permissions, and real-time analytics to quantify community health.
               </p>
               <ul>
-                <li>Auto-moderation rules and action logs</li>
-                <li>Member segmentation with cohorts</li>
-                <li>Exportable engagement reports</li>
+                <li>Auto-moderation + audit logs</li>
+                <li>Member segmentation & cohort analysis</li>
+                <li>Exportable reports & CSV snapshots</li>
               </ul>
             </div>
 
@@ -79,7 +75,6 @@ export default function LandingPage(): JSX.Element {
 
         <hr className="sep" />
 
-        {/* PLATFORMS ROW */}
         <section className="platforms">
           <div className="platform-copy">
             <div className="small-title">Community-Q with</div>
@@ -102,7 +97,7 @@ export default function LandingPage(): JSX.Element {
                 title={p.name}
                 type="button"
               >
-                <span className="platform-svg" aria-hidden="true">{p.label}</span>
+                <span className="platform-svg" aria-hidden>{p.label}</span>
               </button>
             ))}
           </div>
@@ -110,18 +105,17 @@ export default function LandingPage(): JSX.Element {
 
         <hr className="sep" />
 
-        {/* SECOND content block (wider) */}
         <section className="content-block">
           <div className="max-inner">
             <div style={{ flex: 1 }}>
-              <h2>Integrations & cross-platform support</h2>
+              <h2>Integrations & Cross-Platform Support</h2>
               <p className="muted">
-                Connect Community-Q to Twitch, YouTube, Telegram, Discord and more — centralize conversations across platforms.
+                Connect to Twitch, YouTube, Telegram, Discord and more — centralize conversations and insights.
               </p>
 
               <div className="platform-row-small" aria-hidden>
                 {platforms.map((p) => (
-                  <div key={p.id} className="small-pill"><strong>{p.label}</strong><span style={{ marginLeft: 6 }}>{p.name}</span></div>
+                  <div key={p.id} className="small-pill"><strong>{p.label}</strong><span style={{ marginLeft: 8 }}>{p.name}</span></div>
                 ))}
               </div>
             </div>
@@ -129,7 +123,7 @@ export default function LandingPage(): JSX.Element {
             <aside style={{ width: 420, marginLeft: 28 }}>
               <div style={{ borderRadius: 12, padding: 18, background: "var(--glass)" }}>
                 <strong>Connectors</strong>
-                <p style={{ marginTop: 8, color: "var(--muted)" }}>Quickly connect channels and authorize data flows with minimal setup.</p>
+                <p style={{ marginTop: 8, color: "var(--muted)" }}>Quick connectors for channels and chat ingestion.</p>
               </div>
             </aside>
           </div>

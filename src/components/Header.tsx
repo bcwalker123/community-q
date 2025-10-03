@@ -1,30 +1,32 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import logo from "../assets/logo.png";
-import "../styles/landing.css";
 
 /**
- * Header component — sticky, semi-transparent background, subtle divider.
- * Meant to be rendered once (e.g. at App.tsx level).
+ * Header component — sticky, translucent, nav on left, actions on right.
+ * Renders once at the app root (App.tsx).
  */
 const Header: React.FC = () => {
   return (
-    <header className="hq-header" role="banner" aria-label="Main header">
-      <div className="hq-header-inner">
-        <div className="hq-brand" title="Community-Q home">
-          <img src={logo} alt="Community-Q logo" className="hq-logo" />
-          <span className="hq-brand-name">Community-Q</span>
+    <header className="hq-header" role="banner">
+      <div className="container">
+        <div className="hq-left">
+          <Link to="/" className="hq-brand" title="Community-Q — Home">
+            <img src={logo} alt="Community-Q logo" className="hq-logo" />
+            <span className="hq-brand-name">Community-Q</span>
+          </Link>
+
+          <nav className="hq-nav" aria-label="Main navigation">
+            <Link className="hq-nav-link" to="/how">How it works</Link>
+            <Link className="hq-nav-link" to="/templates">Templates</Link>
+            <Link className="hq-nav-link" to="/pricing">Pricing</Link>
+            <Link className="hq-nav-link" to="/docs">Docs</Link>
+          </nav>
         </div>
 
-        <nav className="hq-nav" aria-label="Main navigation">
-          <a className="hq-nav-link" href="#how">How it works</a>
-          <a className="hq-nav-link" href="#templates">Templates</a>
-          <a className="hq-nav-link" href="#pricing">Pricing</a>
-          <a className="hq-nav-link" href="#docs">Docs</a>
-        </nav>
-
         <div className="hq-actions">
-          <a className="hq-signin" href="#signin">Sign In</a>
-          <a className="hq-cta" href="#start">Start your community</a>
+          <Link className="hq-signin" to="/signin">Sign In</Link>
+          <Link className="hq-cta" to="/start">Start your community</Link>
         </div>
       </div>
     </header>
