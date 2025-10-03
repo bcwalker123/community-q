@@ -4,6 +4,8 @@ https://raw.githubusercontent.com/bcwalker123/community-q/master/SCREENS.md
 
 https://raw.githubusercontent.com/bcwalker123/community-q/master/server.js
 
+https://raw.githubusercontent.com/bcwalker123/community-q/master/src/index.css
+
 https://raw.githubusercontent.com/bcwalker123/community-q/master/src/components/Header.tsx
 
 https://raw.githubusercontent.com/bcwalker123/community-q/master/src/components/Footer.tsx
