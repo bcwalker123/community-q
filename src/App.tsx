@@ -1,10 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import LandingPage from './pages/LandingPage';
-import Product from './pages/Product';
-import Integrations from './pages/Integrations';
-import UseCases from './pages/UseCases';
-import Pricing from './pages/Pricing';
 import Header from './components/Header';
 import Footer from './components/Footer';
 
@@ -30,10 +26,6 @@ export default function App() {
         <main style={{ flex: 1 }}>
           <Routes>
             <Route path="/" element={<LandingPage />} />
-            <Route path="/product" element={<Product />} />
-            <Route path="/integrations" element={<Integrations />} />
-            <Route path="/use-cases" element={<UseCases />} />
-            <Route path="/pricing" element={<Pricing />} />
             <Route path="*" element={<LandingPage />} />
           </Routes>
         </main>
