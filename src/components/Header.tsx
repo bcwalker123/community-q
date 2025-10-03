@@ -1,12 +1,17 @@
 import React from "react";
 import logo from "../assets/logo.png";
+import "../styles/landing.css";
 
+/**
+ * Header component — sticky, semi-transparent background, subtle divider.
+ * Meant to be rendered once (e.g. at App.tsx level).
+ */
 const Header: React.FC = () => {
   return (
-    <header className="hq-header">
+    <header className="hq-header" role="banner" aria-label="Main header">
       <div className="hq-header-inner">
-        <div className="hq-brand">
-          <img src={logo} alt="Community-Q" className="hq-logo" />
+        <div className="hq-brand" title="Community-Q home">
+          <img src={logo} alt="Community-Q logo" className="hq-logo" />
           <span className="hq-brand-name">Community-Q</span>
         </div>
 

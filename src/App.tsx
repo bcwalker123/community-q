@@ -1,36 +1,29 @@
-import React from 'react';
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
-import LandingPage from './pages/LandingPage';
-import Header from './components/Header';
-import Footer from './components/Footer';
+import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import LandingPage from "./pages/LandingPage";
+// import other pages...
+// import "./styles/landing.css"; // optional: already imported by components
 
-/**
- * App router. Header and Footer are included once here (not inside pages).
- * NavBar is a lightweight route helper for previewing pages.
- */
-
-const NavBar: React.FC = () => (
-  <div style={{ width: '100%', borderBottom: '1px solid rgba(0,0,0,0.02)', background: 'transparent' }}>
-    <div style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '8px 18px', width: '100%' }}>
-
-    </div>
-  </div>
-);
-
-export default function App() {
+function App() {
   return (
     <BrowserRouter>
-      <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
-        <Header />
-        <NavBar />
-        <main style={{ flex: 1 }}>
-          <Routes>
-            <Route path="/" element={<LandingPage />} />
-            <Route path="*" element={<LandingPage />} />
-          </Routes>
-        </main>
-        <Footer />
-      </div>
+      {/* Header rendered once at top */}
+      <Header />
+
+      {/* App routes */}
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        {/* add your other routes here, e.g.
+            <Route path="/dashboard" element={<Dashboard/>} />
+        */}
+      </Routes>
+
+      {/* Footer rendered once at bottom */}
+      <Footer />
     </BrowserRouter>
   );
 }
+
+export default App;
